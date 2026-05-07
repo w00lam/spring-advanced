@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    driver-class-name: org.h2.Driver
+    username: ${DB_USERNAME}
+    password:
+  h2:
+    console:
+      enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+jwt:
+  secret:
+    key: bXktc3ByaW5nLWFkdmFuY2VkLXNlY3JldC1rZXktZm9yLWhzMjU2
