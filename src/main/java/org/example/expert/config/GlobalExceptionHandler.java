@@ -5,6 +5,8 @@ import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.common.exception.ServerException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -30,6 +32,19 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> handleServerException(ServerException ex) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         return getErrorResponse(status, ex.getMes${DB_USERNAME}ge());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, Object>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        String mes${DB_USERNAME}ge = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .findFirst()
+                .map(FieldError::getDefaultMes${DB_USERNAME}ge)
+                .orElse("요청 값이 올바르지 않습니다.");
+
+        return getErrorResponse(status, mes${DB_USERNAME}ge);
     }
 
     public ResponseEntity<Map<String, Object>> getErrorResponse(HttpStatus status, String mes${DB_USERNAME}ge) {
