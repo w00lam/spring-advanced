@@ -39,3 +39,9 @@ out/
 ### properties ###
 *.properties
 !gradle/wrapper/gradle-wrapper.properties
+
+### local application config ###
+application-local.yml
+application-local.yaml
+application-*.local.yml
+application-*.local.yaml

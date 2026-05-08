@@ -97,6 +97,14 @@ Windows 환경에서는 다음 명령어를 사용할 수 있습니다.
 
 ### 3. 애플리케이션 실행
 
+JWT 서명 키는 `JWT_SECRET_KEY` 환경변수로 설정할 수 있습니다. 설정하지 않으면 로컬 개발용 기본값이 사용됩니다.
+
+Windows PowerShell 예시:
+
+```powershell
+$env:JWT_SECRET_KEY="Base64로 인코딩된 로컬 개발용 키"
+```
+
 ```bash
 ./gradlew bootRun
 ```
